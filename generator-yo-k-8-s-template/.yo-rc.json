@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Protacon",
+      "authorEmail": "pekka.savolainen@protacon.com",
+      "authorUrl": ""
+    }
+  }
+}
