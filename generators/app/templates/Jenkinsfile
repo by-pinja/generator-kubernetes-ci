@@ -3,17 +3,17 @@
 // Podtemplate and node must match, dont use generic names like 'node', use more specific like projectname or node + excact version number.
 // This is because CI environment reuses templates based on naming, if you create node 7 environment with name 'node', following node 8 environment
 // builds may fail because they reuse same environment if label matches existing.
-podTemplate(label: 'node.7.10.0', idleMinutes:30,
+podTemplate(label: '<%= projectName %>', idleMinutes:30,
   containers: [
     containerTemplate(name: 'node', image: 'node:7.10.0', ttyEnabled: true, command: '/bin/sh -c', args: 'cat'),
     containerTemplate(name: 'docker', image: 'ptcos/docker-client:1.1.18', alwaysPullImage: true, ttyEnabled: true, command: '/bin/sh -c', args: 'cat')
   ]
 ) {
-    def project = 'ptcs-kubernetes-template'
+    def project = '<%= projectName %>'
     def branch = (env.BRANCH_NAME)
-    def namespace = "ptcs-kubernetes-template"
+    def namespace = "<%= namespace %>"
 
-    node('node.7.10.0') {
+    node('<%= projectName %>') {
         stage('Checkout') {
             checkout_with_tags()
         }
@@ -29,7 +29,7 @@ podTemplate(label: 'node.7.10.0', idleMinutes:30,
         stage('Test') {
             container('node') {
                 // sh """
-                //     echo todo
+                //     npm run test
                 // """
             }
         }
