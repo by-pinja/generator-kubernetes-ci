@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - 7
-  - 6
-  - 4
-after_script: 'cat ./coverage/lcov.info | coveralls'
+deploy:
+  provider: npm
+  email: savolainen.pekka@gmail.com
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
