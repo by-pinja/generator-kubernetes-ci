@@ -4,5 +4,6 @@ node_js:
 deploy:
   provider: npm
   email: savolainen.pekka@gmail.com
+  api_key: $NPM_TOKEN
   on:
     tags: true
