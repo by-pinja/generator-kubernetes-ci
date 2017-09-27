@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: <%= projectName %>-<%= branch %>
+    version: <%= branch %>
+  name: <%= projectName %>-<%= branch %>
+  namespace: <%= namespace %>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: <%= projectName %>-<%= branch %>
+      version: <%= branch %>
+  template:
+    metadata:
+      labels:
+        app: <%= projectName %>-<%= branch %>
+        version: <%= branch %>
+      name: <%= projectName %>-<%= branch %>
+    spec:
+      containers:
+      - image: eu.gcr.io/ptcs-docker-registry/<%= projectName %>:latest-<%= branch %>
+        imagePullPolicy: Always
+        name: <%= projectName %>-<%= branch %>
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: <%= projectName %>-<%= branch %>
+    version: <%= branch %>
+  name: <%= projectName %>-<%= branch %>
+  namespace: <%= namespace %>
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: <%= projectName %>-<%= branch %>
+    version: <%= branch %>

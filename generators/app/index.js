@@ -14,13 +14,13 @@ module.exports = class extends Generator {
       type: 'input',
       name: 'projectName',
       message: 'Project name?',
-      default: this.appname
+      default: this.appname.replace(/\s/g, "-")
     },
     {
       type: 'input',
       name: 'namespace',
       message: 'Kubernetest namespace (in test environment)?',
-      default: this.appname
+      default: this.appname.replace(/\s/g, "-")
     },
     {
       type: 'input',
@@ -54,7 +54,8 @@ module.exports = class extends Generator {
       this.templatePath('k8s/k8s.yaml'),
       this.destinationPath('k8s/' + this.props.branch + '.yaml'), {
         projectName: this.props.projectName,
-        namespace: this.props.namespace
+        namespace: this.props.namespace,
+        branch: this.props.branch
       });
 
     this.fs.copy(

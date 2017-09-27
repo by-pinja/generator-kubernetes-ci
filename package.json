@@ -33,8 +33,7 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "eslintConfig": {
     "extends": "xo-space",
     "env": {

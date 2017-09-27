@@ -39,6 +39,7 @@ podTemplate(label: '<%= projectName %>', idleMinutes:30,
 
                 toK8sTestEnv() {
                     sh """
+                        kubectl apply -f ./k8s/${branch}.yaml
                         kubectl set image deployment/$project-$branch $project-$branch=$published.image:$published.tag --namespace=$namespace
                     """
                 }
