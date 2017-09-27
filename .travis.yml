@@ -3,7 +3,7 @@ node_js:
   - 7
 deploy:
   provider: npm
-  email: savolainen.pekka@gmail.com
+  email: pekka.savolainen@protacon.com
   api_key: $NPM_TOKEN
   on:
     tags: true

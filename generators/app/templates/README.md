@@ -2,3 +2,5 @@
 1. Add git tag `git tag 1.0.0`
 2. Push git tags `git push --tags`
 3. This triggers build which generates container with specified git tag.
+4. You can see excact container name/address from jenkins build.
+
