@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <%= namespace %>
+
+---
+
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -43,3 +50,24 @@ spec:
   selector:
     app: <%= projectName %>-<%= branch %>
     version: <%= branch %>
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: <%= projectName %>-<%= branch %>-ingress
+  namespace: <%= namespace %>
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: <%= projectName %>-<%= branch %>.protacon.cloud
+      http:
+        paths:
+          - backend:
+              serviceName: <%= projectName %>-<%= branch %>
+              servicePort: 80
+  tls:
+    - hosts:
+      - <%= projectName %>-<%= branch %>.protacon.cloud
