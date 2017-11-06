@@ -1,6 +1,6 @@
 {
   "name": "@protacon/generator-kubernetes-ci",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Protacon Solutions LTD CI pipeline template with k8s support",
   "homepage": "https://github.com/protacon/yo-k8s-template",
   "author": {
