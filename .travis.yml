@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - 7
+before_install:
+  - npm version --no-git-tag-version from-git
 deploy:
   provider: npm
   email: pekka.savolainen@protacon.com
