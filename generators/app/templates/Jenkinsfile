@@ -5,7 +5,7 @@
 // builds may fail because they reuse same environment if label matches existing.
 podTemplate(label: '<%= projectName %>', idleMinutes:30,
   containers: [
-    containerTemplate(name: 'node', image: 'node:7.10.0', ttyEnabled: true, command: '/bin/sh -c', args: 'cat'),
+    containerTemplate(name: 'node', image: 'node:8.9.1', ttyEnabled: true, command: '/bin/sh -c', args: 'cat'),
     containerTemplate(name: 'docker', image: 'ptcos/docker-client:1.1.32', alwaysPullImage: true, ttyEnabled: true, command: '/bin/sh -c', args: 'cat')
   ]
 ) {
