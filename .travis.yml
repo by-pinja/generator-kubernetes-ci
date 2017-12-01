@@ -1,12 +1,9 @@
 language: node_js
 node_js:
   - 7
-before_install:
+before_deploy:
   - currentgittag=$(git describe --abbrev=0 --tags)
   - npm version $currentgittag
-before_deploy:
-  - deploygittag=$(git describe --abbrev=0 --tags)
-  - npm version $deploygittag --allow-same-version
 deploy:
   provider: npm
   email: pekka.savolainen@protacon.com
