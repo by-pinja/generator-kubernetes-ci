@@ -8,5 +8,6 @@ deploy:
   provider: npm
   email: pekka.savolainen@protacon.com
   api_key: $NPM_TOKEN
+  skip_cleanup: true
   on:
     tags: true
