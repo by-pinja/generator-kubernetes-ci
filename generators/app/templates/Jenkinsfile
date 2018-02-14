@@ -1,4 +1,4 @@
-@Library("PTCSLibrary@1.1.0") _
+@Library("PTCSLibrary@1.2.0") _
 
 // Podtemplate and node must match, dont use generic names like 'node', use more specific like projectname or node + excact version number.
 // This is because CI environment reuses templates based on naming, if you create node 7 environment with name 'node', following node 8 environment
@@ -43,7 +43,20 @@ podTemplate(label: '<%= projectName %>',
                     def published = publishContainerToGcr(project, branch);
 
                     if(branch == "<%= branch %>") {
+                        // This set DNS as public record, required on public traefiks,
+                        // which means traefik ingresses with labels 'traefik-type: public'.
+                        // This way ingress is exposed to public network needed. However this dns command is required for
+                        // DNS work correctly with public traefik.
+                        //
+                        //setPublicDnsToK8sTestEnv("example-app-master.protacon.cloud")
+
+                        // This replaces any matching image in testing environment with newest version.
                         applyToK8sTestEnv(published);
+
+                        // In this body you have access to test environment with kubectl and gcloud tools against test project.
+                        toK8sTestEnv {
+                            sh "echo 'something here.'"
+                        }
                     }
                 }
             }
