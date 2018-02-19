@@ -4,7 +4,7 @@ def label = "jenkins-build-${UUID.randomUUID().toString()}"
 podTemplate(label: label,
   containers: [
     containerTemplate(name: 'node', image: 'node:8.9.1', ttyEnabled: true, command: '/bin/sh -c', args: 'cat'),
-    containerTemplate(name: 'docker', image: 'ptcos/docker-client:1.2.0.25', alwaysPullImage: true, ttyEnabled: true, command: '/bin/sh -c', args: 'cat')
+    containerTemplate(name: 'docker', image: 'ptcos/docker-client:1.2.0.29', alwaysPullImage: true, ttyEnabled: true, command: '/bin/sh -c', args: 'cat')
   ]
 ) {
     def project = '<%= projectName %>'
